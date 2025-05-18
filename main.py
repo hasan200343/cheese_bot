@@ -1,3 +1,4 @@
+from keep_alive import keep_alive
 import discord
 from discord.ext import tasks
 import json
@@ -81,4 +82,16 @@ async def check_birthdays():
 
                 await channel.send(content="@everyone", embed=embed)
 
-bot.run(TOKEN)
+
+# ----------------------
+# 🚫 Error Handling
+# ----------------------
+keep_alive()
+token = os.getenv("TOKEN")
+if token:
+    bot.run(token)
+else:
+    print(
+        "Error: Discord bot token not found. Please set the 'TOKEN' environment variable."
+    )
+
